@@ -10,9 +10,6 @@ export const complaintsApi = {
   uploadAttachment: (id, file) => {
     const formData = new FormData();
     formData.append("file", file);
-    // Don't set Content-Type manually — the browser needs to add the
-    // multipart boundary itself, which axios only does when it detects
-    // FormData and this header is left unset.
     return axiosClient.post(`/complaints/${id}/attachments`, formData);
   },
   downloadAttachmentUrl: (attachmentId) =>

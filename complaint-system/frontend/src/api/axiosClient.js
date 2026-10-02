@@ -6,7 +6,7 @@ const axiosClient = axios.create({
   baseURL: API_BASE_URL,
 });
 
-// Attach the JWT to every request if we have one stored.
+
 axiosClient.interceptors.request.use((config) => {
   const token = localStorage.getItem("access_token");
   if (token) {
@@ -15,7 +15,6 @@ axiosClient.interceptors.request.use((config) => {
   return config;
 });
 
-// If the backend says our token is invalid/expired, log the user out.
 axiosClient.interceptors.response.use(
   (response) => response,
   (error) => {
